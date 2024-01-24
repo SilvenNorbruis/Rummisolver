@@ -13,5 +13,5 @@ The program is still in an early stage, so dont expect it to work.
 
 TODO: 
 
-Add Input for new tiles, that is in the wild (on the table) and on the players board.
+Add Input for new tiles, is in the wild (on the table) and on the players board.
 Implement Jokers
