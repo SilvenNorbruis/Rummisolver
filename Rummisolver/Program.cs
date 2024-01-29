@@ -50,9 +50,9 @@ class Program
                                 
                             }
                         }
-                        else
+                        else if(answer == "n")
                         {
-                            
+                            grabTile();
                         }
                        
                     } 
@@ -65,7 +65,10 @@ class Program
         }
     }
 
+    public static Random random = new Random();
 
+
+        
 
     public static List<Tile> FindOpeningPlay(List<Tile> AvalibleTiles)
     {
@@ -249,10 +252,59 @@ class Program
 
     public static void grabTile()
     {
+        bool joker = false;
+        bool jokerEntered = false;
+        string color;
+        int number = 0;
+        int id;
+
         Console.WriteLine("Grab a tile from the pile...");
         Console.WriteLine("Enter the tiles color:");
-        string color = Console.ReadLine().ToLower();
+        color = Console.ReadLine().ToLower();
+        Console.WriteLine("Is the tile a joker? y/n");
+   
+        while(!jokerEntered)
+        {
 
+       
+             string jokerAnswer = Console.ReadLine().ToLower();
+            if(jokerAnswer == "y") {
+                joker = true;
+                jokerEntered = true; 
+            }
+            else if(jokerAnswer == "n")
+            {
+            joker = false;
+                jokerEntered = true;
+            }
+            else
+            {
+            Console.WriteLine("please input y for yes or n for no.....");
+            }
+        }
+        if(!joker)
+        {
+            Console.WriteLine("Please enter the number of the tile");
+            number = Convert.ToInt32(Console.ReadLine());
+        }
+
+        //generate a id that is unique
+        do
+        {
+            id = random.Next(100);
+        } while (AllTiles.Exists(tile => tile.Id == id));
+
+
+
+        AllTiles.Add(new Tile
+        {
+            Value = number,
+            Color = color,
+            IsWild = false,
+            Id = id
+
+        }) ;
+       
     }
 
 
